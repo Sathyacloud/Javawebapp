@@ -1,4 +1,10 @@
 # Maven package Java project Web App to Linux on Azure
+- task: AzureWebApp@1
+  inputs:
+    azureSubscription: 'Azure subscription 1(8fa70147-7f4b-4b90-951c-c2000054c769)'
+    appType: 'webAppLinux'
+    appName: 'AZ-DEVOPS-HW-D3-APP'
+    package: '$(System.DefaultWorkingDirectory)/**/*.zip'
 - task: Maven@4
   inputs:
     mavenPomFile: 'pom.xml'
@@ -15,6 +21,9 @@
 
 trigger:
 - main
+- task: MavenAuthenticate@0
+  inputs:
+    artifactsFeeds: 'sathyashangar'
 
 variables:
 
